@@ -6,3 +6,4 @@ numpy==1.26.4
 Pillow==11.1.0
 gunicorn==23.0.0
 tensorflow==2.18.1
+tf-keras==2.18.0
