@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from deepface import DeepFace
 import logging
 from datetime import datetime
@@ -20,6 +21,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 def preprocess_image(image_path, request_id):
     """
@@ -221,5 +223,6 @@ def compare_faces():
                 logger.debug(f"[{request_id}] Deleted preprocessed file: {preprocessed2}")
 
 if __name__ == '__main__':
-    logger.info("Starting Face Verification Service on port 5001")
-    app.run(port=5001, debug=True)
+    port = int(os.environ.get('PORT', 5001))
+    logger.info(f"Starting Face Verification Service on port {port}")
+    app.run(host='0.0.0.0', port=port, debug=False)
