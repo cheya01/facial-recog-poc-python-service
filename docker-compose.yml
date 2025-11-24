@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  face-embedding-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: face-embed-api
+    ports:
+      - "5010:5010"
+    environment:
+      - BUCKET_NAME=${BUCKET_NAME}
+      - BUCKET_REGION=${BUCKET_REGION}
+      - ACCESS_KEY=${ACCESS_KEY}
+      - SECRET_KEY=${SECRET_KEY}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5010/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

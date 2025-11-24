@@ -1,0 +1,44 @@
+# Python virtual environment
+my-venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Environment variables
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+*.tmp
+*_enhanced.jpg
+*_face_crop.jpg
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Model cache (DeepFace models)
+.deepface/
+
+# Local test images
+*.jpg
+*.jpeg
+*.png
+!test-image.jpg
